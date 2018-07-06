@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY}homepage
     build:
       context: .
-      dockerfile: Homepage\Dockerfile
+      dockerfile: Homepage/Dockerfile

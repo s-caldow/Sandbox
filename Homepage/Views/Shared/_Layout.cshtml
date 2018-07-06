@@ -42,13 +42,13 @@
 						<h2>Menu</h2>
 					</header>
 					<ul>
-						<li><a href="generic.html">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
+						<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+						<li><a asp-controller="Home" asp-action="About">About</a></li>
 						<li>
-							<span class="opener">Submenu</span>
+							<span class="opener">RPG Applications</span>
 							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
+								<li><a asp-controller="MapGenerator" asp-action="Index">Map Generator</a></li>
+								<li><a href="#">Harrow Deck</a></li>
 								<li><a href="#">Tempus Magna</a></li>
 								<li><a href="#">Feugiat Veroeros</a></li>
 							</ul>
@@ -116,7 +116,8 @@
 
 	</div>
 
-	<!-- Scripts -->
+<!-- Scripts -->
+	
 	<script src="~/js/jquery.min.js"></script>
 	<script src="~/js/browser.min.js"></script>
 	<script src="~/js/breakpoints.min.js"></script>
