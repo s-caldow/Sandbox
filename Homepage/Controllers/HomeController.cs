@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Homepage.Models;
+using Homepage.NewsAggregator;
 
 namespace Homepage.Controllers
 {
@@ -28,6 +29,14 @@ namespace Homepage.Controllers
 
             return View();
         }
+
+	    public IActionResult NewsAggregator()
+	    {
+			RSSReader reader = new RSSReader();
+		    IEnumerable<string> urls = reader.GetRssUrlsList();
+
+		    return View();
+	    }
 
         public IActionResult Error()
         {

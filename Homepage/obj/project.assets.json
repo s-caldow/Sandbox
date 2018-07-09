@@ -2620,6 +2620,21 @@
           "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.Azure.dll": {}
         }
       },
+      "Microsoft.SyndicationFeed.ReaderWriter/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.SyndicationFeed.ReaderWriter.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.SyndicationFeed.ReaderWriter.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.Web.BrowserLink/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -7433,6 +7448,16 @@
         "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.Azure.xml",
         "microsoft.rest.clientruntime.azure.3.3.7.nupkg.sha512",
         "microsoft.rest.clientruntime.azure.nuspec"
+      ]
+    },
+    "Microsoft.SyndicationFeed.ReaderWriter/1.0.2": {
+      "sha512": "o3F/WrKcVpcGYcVJeCTMfP0PLMl+uh7ndBQz9PBE6YvcJiSFj1/hbcqeiV8bAkFN8GMYT74398csaFoz6mfGIg==",
+      "type": "package",
+      "path": "microsoft.syndicationfeed.readerwriter/1.0.2",
+      "files": [
+        "lib/netstandard1.3/Microsoft.SyndicationFeed.ReaderWriter.dll",
+        "microsoft.syndicationfeed.readerwriter.1.0.2.nupkg.sha512",
+        "microsoft.syndicationfeed.readerwriter.nuspec"
       ]
     },
     "Microsoft.VisualStudio.Web.BrowserLink/2.0.3": {
@@ -12658,7 +12683,8 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.AspNetCore.All >= 2.0.8",
-      "Microsoft.NETCore.App >= 2.0.0"
+      "Microsoft.NETCore.App >= 2.0.0",
+      "Microsoft.SyndicationFeed.ReaderWriter >= 1.0.2"
     ]
   },
   "packageFolders": {
@@ -12668,11 +12694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\src\\programming-practice\\Sarah_Homepage\\Homepage\\Homepage\\Homepage.csproj",
+      "projectUniqueName": "C:\\src\\programming-practice\\Homepage\\Homepage\\Homepage.csproj",
       "projectName": "Homepage",
-      "projectPath": "C:\\src\\programming-practice\\Sarah_Homepage\\Homepage\\Homepage\\Homepage.csproj",
+      "projectPath": "C:\\src\\programming-practice\\Homepage\\Homepage\\Homepage.csproj",
       "packagesPath": "C:\\Users\\sarah.caldow\\.nuget\\packages\\",
-      "outputPath": "C:\\src\\programming-practice\\Sarah_Homepage\\Homepage\\Homepage\\obj\\",
+      "outputPath": "C:\\src\\programming-practice\\Homepage\\Homepage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12710,6 +12736,10 @@
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
+          },
+          "Microsoft.SyndicationFeed.ReaderWriter": {
+            "target": "Package",
+            "version": "[1.0.2, )"
           }
         },
         "imports": [
