@@ -6,26 +6,87 @@ using System.Net;
 using System.Spatial;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Homepage.Models;
+using Microsoft.SyndicationFeed;
 
 namespace Homepage.NewsAggregator
 {
     public class RSSReader
     {
 		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110", "https://hnrss.org/frontpage" };
-
+	    public List<RssItem> newsFeed;
 
 		public RSSReader()
 	    {   
 	    }
 
-	    public void ProcessRssXml()
+	    public List<RssItem> GetNewsFeed()
 	    {
-
+		   newsFeed = new List<RssItem>();
+		    foreach (string url in xmlUrls)
+		    {
+				RssItem article = new RssItem();
+			    string rawXml = ReadRssXml(url);
+				ProcessRssXml(rawXml);
+			}
+		
+		    return newsFeed;
 	    }
 
-	    public void ReadRssXml()
+	    public void ProcessRssXml(string fileReadout)
 	    {
 
+		    using (XmlReader reader = XmlReader.Create(new StringReader(fileReadout)))
+		    {
+				reader.ReadStartElement("rss");
+			    while (reader.Read())
+			    {
+				    if (reader.Name == "item")
+				    {
+					    switch (reader.Name)
+					    {
+							case "Title":
+
+							case "Description":
+
+							case "Date":
+
+							case "PubDate":
+								break;
+						}
+				    }
+				    XmlElement e = (XmlElement) reader.ReadContentAsObject();
+			    }
+			    
+		    }
+		}
+
+	    public string ReadRssXml(string url)
+	    {
+		    string posts = "";
+		    try
+		    {
+			    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+			    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+			    if (response.StatusCode == HttpStatusCode.OK)
+			    {
+				    Stream receiveStream = response.GetResponseStream();
+				    StreamReader readStream = null;
+				    if (response.CharacterSet == null)
+					    readStream = new StreamReader(receiveStream);
+				    else
+					    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+				    posts = readStream.ReadToEnd();
+				    response.Close();
+				    readStream.Close();
+			    }
+		    }
+		    catch (NullReferenceException e)
+		    {
+		    }
+		    return posts;
 	    }
 
 	    public IEnumerable<string> GetRssUrlsList()

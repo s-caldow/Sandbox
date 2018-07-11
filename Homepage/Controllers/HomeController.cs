@@ -33,7 +33,7 @@ namespace Homepage.Controllers
 	    public IActionResult NewsAggregator()
 	    {
 			RSSReader reader = new RSSReader();
-		    IEnumerable<string> urls = reader.GetRssUrlsList();
+		    reader.GetNewsFeed();
 
 		    return View();
 	    }

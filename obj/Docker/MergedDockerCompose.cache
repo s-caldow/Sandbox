@@ -1,7 +1,7 @@
 services:
   homepage:
     build:
-      context: C:\src\programming-practice\Sarah_Homepage\Homepage
+      context: C:\src\programming-practice\Homepage
       dockerfile: Homepage/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
