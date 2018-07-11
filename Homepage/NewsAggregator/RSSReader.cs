@@ -7,6 +7,8 @@ using System.Spatial;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 using Homepage.Models;
 using Microsoft.SyndicationFeed;
 
@@ -34,33 +36,25 @@ namespace Homepage.NewsAggregator
 		    return newsFeed;
 	    }
 
-	    public void ProcessRssXml(string fileReadout)
+	    public List<RssItem> ProcessRssXml(string fileReadout)
 	    {
-
-		    using (XmlReader reader = XmlReader.Create(new StringReader(fileReadout)))
+		    var articles = new List<RssItem>();
+		    var doc = XDocument.Parse(fileReadout);
+		    var nav = doc.CreateNavigator();
+		    XPathNodeIterator nodes = nav.Select("/rss/channel/item");
+		    foreach (XPathNavigator node in nodes)
 		    {
-				reader.ReadStartElement("rss");
-			    while (reader.Read())
-			    {
-				    if (reader.Name == "item")
-				    {
-					    switch (reader.Name)
-					    {
-							case "Title":
+			    var article = new RssItem();
+			    article.Title = node.SelectSingleNode("title").Value;
+			    article.Description = node.SelectSingleNode("description").Value;
+			    article.DatePublished = Convert.ToDateTime(node.SelectSingleNode("pubDate").Value);
+				//var Author = node.SelectSingleNode("dc:creator").Value;
+			    article.Url = node.SelectSingleNode("link").Value;
+				articles.Add(article);
+			}
 
-							case "Description":
-
-							case "Date":
-
-							case "PubDate":
-								break;
-						}
-				    }
-				    XmlElement e = (XmlElement) reader.ReadContentAsObject();
-			    }
-			    
-		    }
-		}
+		    return articles;
+	    }
 
 	    public string ReadRssXml(string url)
 	    {
