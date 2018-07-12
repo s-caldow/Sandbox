@@ -33,9 +33,8 @@ namespace Homepage.Controllers
 	    public IActionResult NewsAggregator()
 	    {
 			RSSReader reader = new RSSReader();
-		    reader.GetNewsFeed();
-
-		    return View();
+		    var newsFeed = reader.GetNewsFeed();
+			return View(newsFeed);
 	    }
 
         public IActionResult Error()

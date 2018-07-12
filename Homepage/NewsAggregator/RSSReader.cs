@@ -17,28 +17,27 @@ namespace Homepage.NewsAggregator
     public class RSSReader
     {
 		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110", "https://hnrss.org/frontpage" };
-	    public List<RssItem> newsFeed;
+	    public List<RssItem> articles;
 
 		public RSSReader()
-	    {   
-	    }
+	    {
+		    articles = new List<RssItem>();
+		}
 
 	    public List<RssItem> GetNewsFeed()
 	    {
-		   newsFeed = new List<RssItem>();
+		   
 		    foreach (string url in xmlUrls)
 		    {
-				RssItem article = new RssItem();
 			    string rawXml = ReadRssXml(url);
 				ProcessRssXml(rawXml);
 			}
 		
-		    return newsFeed;
+		    return articles;
 	    }
 
 	    public List<RssItem> ProcessRssXml(string fileReadout)
 	    {
-		    var articles = new List<RssItem>();
 		    var doc = XDocument.Parse(fileReadout);
 		    var nav = doc.CreateNavigator();
 		    XPathNodeIterator nodes = nav.Select("/rss/channel/item");
@@ -60,7 +59,7 @@ namespace Homepage.NewsAggregator
 	    {
 		    string posts = "";
 		    try
-		    {
+		    { 
 			    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 			    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 

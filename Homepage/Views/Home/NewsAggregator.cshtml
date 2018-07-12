@@ -1,7 +1,25 @@
-﻿
+﻿@model IEnumerable<RssItem>
 @{
     ViewData["Title"] = "NewsAggregator";
 }
 
-<h2>NewsAggregator</h2>
+<h2>Newsfeed</h2>
 
+<div class="box alt">
+	<div class="row gtr-50 gtr-uniform">
+		@foreach (var item in Model)
+		{
+			<div class="col-4">
+				<header class="major">
+					<h2>@item.Title</h2>
+				</header>
+				<p class="left date">@item.DatePublished</p>
+				<p class="author">@item.Author</p>
+				<p class="description">
+					@item.Description
+				</p>
+				<a class="url" href="@item.Url">Read more...</a>
+			</div>
+		}
+	</div>
+</div>
