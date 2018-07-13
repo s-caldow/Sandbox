@@ -16,7 +16,7 @@ namespace Homepage.NewsAggregator
 {
     public class RSSReader
     {
-		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110" };
+		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110", "http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml", "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" };
 	    public List<RssItem> articles;
 
 		public RSSReader()
@@ -33,10 +33,10 @@ namespace Homepage.NewsAggregator
 				ProcessRssXml(rawXml);
 			}
 		
-		    return articles;
+		    return articles.OrderBy(o => o.DatePublished).ToList();
 	    }
 
-	    public List<RssItem> ProcessRssXml(string fileReadout)
+	    public void ProcessRssXml(string fileReadout)
 	    {
 		    var doc = XDocument.Parse(fileReadout);
 		    var nav = doc.CreateNavigator();
@@ -47,12 +47,9 @@ namespace Homepage.NewsAggregator
 			    article.Title = node.SelectSingleNode("title").Value;
 			    article.Description = node.SelectSingleNode("description").Value;
 			    article.DatePublished = Convert.ToDateTime(node.SelectSingleNode("pubDate").Value);
-				//var Author = node.SelectSingleNode("dc:creator").Value;
 			    article.Url = node.SelectSingleNode("link").Value;
 				articles.Add(article);
 			}
-
-		    return articles;
 	    }
 
 	    public string ReadRssXml(string url)
