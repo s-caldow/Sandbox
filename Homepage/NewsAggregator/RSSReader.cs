@@ -16,7 +16,7 @@ namespace Homepage.NewsAggregator
 {
     public class RSSReader
     {
-		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110", "https://hnrss.org/frontpage" };
+		private List<string> xmlUrls = new List<string>() { "http://thehill.com/rss/syndicator/19110" };
 	    public List<RssItem> articles;
 
 		public RSSReader()

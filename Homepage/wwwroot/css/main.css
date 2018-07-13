@@ -301,6 +301,10 @@ input, select, textarea {
 			margin: 3em 0;
 		}
 
+		hr.minor {
+			margin: 1em 0;
+		}
+
 	.align-left {
 		text-align: left;
 	}

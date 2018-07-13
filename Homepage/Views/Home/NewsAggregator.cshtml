@@ -1,25 +1,28 @@
 ﻿@model IEnumerable<RssItem>
 @{
-    ViewData["Title"] = "NewsAggregator";
+    ViewData["Title"] = "Newsfeed";
 }
 
-<h2>Newsfeed</h2>
+<header id="header" style="margin-bottom: 50px">
+	<a asp-controller="Home" asp-action="NewsAggregator" class="logo"><strong>Newsfeed</strong></a>
+</header>
 
 <div class="box alt">
 	<div class="row gtr-50 gtr-uniform">
 		@foreach (var item in Model)
 		{
-			<div class="col-4">
-				<header class="major">
-					<h2>@item.Title</h2>
-				</header>
-				<p class="left date">@item.DatePublished</p>
-				<p class="author">@item.Author</p>
-				<p class="description">
-					@item.Description
-				</p>
-				<a class="url" href="@item.Url">Read more...</a>
+		<div class="header" style="margin-bottom: 20px">
+			<header class="minor">
+				<h3>@item.Title</h3>
+			</header>
+			<div class="left date">@item.DatePublished</div>
+			<div>
+				@item.Description
 			</div>
+			<a class="url" href="@item.Url">Read more...</a>
+			<hr />
+		</div>
 		}
 	</div>
+	
 </div>
